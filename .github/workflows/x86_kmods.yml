@@ -40,3 +40,10 @@ jobs:
         git remote set-url --add origin "https://${{ github.actor }}:${{ secrets.REPO_TOKEN }}@github.com/${{ github.repository }}"
         git fetch --unshallow origin
         git push -u origin main
+
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      continue-on-error: true
+      with:
+        retain_days: 100
+        keep_minimum_runs: 1
